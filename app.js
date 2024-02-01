@@ -8,13 +8,32 @@ const searchPlayerBtn = document.getElementById('search-player-btn').addEventLis
 function searchSummonerName(){
 
     const API_KEY = config.API_KEY;
-    console.log(API_KEY)
-    console.log('Search player button clicked!')
-    let inputtedSummonerName = document.getElementById('search-player').valueof;
-    const apiSummonerName = 'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/'+inputtedSummonerName
+    let inputtedSummonerName = document.getElementById('summoner-name-textbox').value;
+    const apiCallSummonerName = 'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/'+inputtedSummonerName+'?api_key='+API_KEY
 
+    fetch(apiCallSummonerName)
+    .then(handleResponse)
+    .then(updateSummonerName)
+    .catch(handleError);
+    
 
 }
-    // get the value of the search bar
-// make another function that gets the response in a json format
-// another func to handle the data for summoner name and updates the text content 
+
+function handleResponse(response){
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return response.json();
+
+}
+
+function updateSummonerName(data) {
+    const summonerNameResult = data.name;
+    console.log(summonerNameResult)
+}
+
+function handleError(error) {
+    // Handle errors
+    console.error('Error:', error);
+}
