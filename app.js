@@ -8,9 +8,12 @@ const searchPlayerBtn = document.getElementById('search-player-btn').addEventLis
 function searchSummonerName(){
 
     const API_KEY = config['API KEY'];
-    let inputtedSummonerName = document.getElementById('summoner-name-textbox').value;
-    const apiCallSummonerName = 'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/'+inputtedSummonerName+'?api_key='+API_KEY
+    const inputtedSummonerName = document.getElementById('summoner-name-textbox').value;
+    const selectedServer = document.getElementById('server-list').value;
+    console.log(selectedServer);
+    const apiCallSummonerName = 'https://'+selectedServer+'.api.riotgames.com/lol/summoner/v4/summoners/by-name/'+inputtedSummonerName+'?api_key='+API_KEY
     console.log(API_KEY);
+
     fetch(apiCallSummonerName)
     .then(handleResponse)
     .then(updateSummonerName)

@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOL API TEST</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="module" src="app.js"></script>
 </head>
 <body>
+    <select name="Server" id="server-list">
+        <option value="euw1">EUW</option>
+        <option value="na1">NA</option>
+        <option value="kr">KR</option>
+    </select>
     
     <input type="text" id="summoner-name-textbox" name="search-player" placeholder="Enter username">
     <button id="search-player-btn">Search player</button>
