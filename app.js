@@ -7,10 +7,10 @@ const searchPlayerBtn = document.getElementById('search-player-btn').addEventLis
 // make search player function that fetches api call and does all the .then blocks
 function searchSummonerName(){
 
-    const API_KEY = config.API_KEY;
+    const API_KEY = config['API KEY'];
     let inputtedSummonerName = document.getElementById('summoner-name-textbox').value;
     const apiCallSummonerName = 'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/'+inputtedSummonerName+'?api_key='+API_KEY
-
+    console.log(API_KEY);
     fetch(apiCallSummonerName)
     .then(handleResponse)
     .then(updateSummonerName)
@@ -29,8 +29,11 @@ function handleResponse(response){
 }
 
 function updateSummonerName(data) {
+    const summonerNameHeader = document.getElementById('summoner-name');
     const summonerNameResult = data.name;
-    console.log(summonerNameResult)
+    console.log('Summoner name: ' +summonerNameResult)
+    summonerNameHeader.textContent = summonerNameResult;
+
 }
 
 function handleError(error) {
