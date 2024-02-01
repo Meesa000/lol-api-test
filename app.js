@@ -1,11 +1,12 @@
 import { config } from './config.js';
+let summonerPuuid;
 
 
 // get reference to the search player-button
-const searchPlayerBtn = document.getElementById('search-player-btn').addEventListener('click',searchSummonerName);
+const searchPlayerBtn = document.getElementById('search-player-btn').addEventListener('click',searchSummonerInfo);
 
 // make search player function that fetches api call and does all the .then blocks
-function searchSummonerName(){
+function searchSummonerInfo(){
 
     const API_KEY = config['API KEY'];
     const inputtedSummonerName = document.getElementById('summoner-name-textbox').value;
@@ -16,11 +17,13 @@ function searchSummonerName(){
 
     fetch(apiCallSummonerName)
     .then(handleResponse)
-    .then(updateSummonerinfo)
+    .then(updateSummonerInfo)
     .catch(handleError);
     
+    console.log(summonerPuuid)
 
 }
+
 
 function handleResponse(response){
     if (!response.ok) {
@@ -43,6 +46,8 @@ function updateSummonerInfo(data) {
     const displaySummonerLevel = document.getElementById('summoner-level');
     displaySummonerLevel.textContent = 'Summoner level: ' + summonerLevel;
 
+    summonerPuuid = data.puuid;
+    
 }
 
 function handleError(error) {
