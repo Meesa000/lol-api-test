@@ -1,40 +1,20 @@
-
-const submitButton = document.getElementById('submit').addEventListener('click',searchForPlayer);
-const displaySummonerName = document.getElementById('summoner-name');
+import { config } from './config.js';
 
 
+// get reference to the search player-button
+const searchPlayerBtn = document.getElementById('search-player-btn').addEventListener('click',searchSummonerName);
+
+// make search player function that fetches api call and does all the .then blocks
+function searchSummonerName(){
+
+    const API_KEY = config.API_KEY;
+    console.log(API_KEY)
+    console.log('Search player button clicked!')
+    let inputtedSummonerName = document.getElementById('search-player').valueof;
+    const apiSummonerName = 'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/'+inputtedSummonerName
 
 
-
-
-function searchForPlayer(){
-    const API_KEY = 'RGAPI-2c53371a-b1e0-40c8-a34b-41cecf955f37'
-    const summonerName = document.getElementById('search-player').value;
-    const apiURL = 'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/'+summonerName+'?api_key='+API_KEY
-
-    fetch(apiURL)
-    .then(handleResponse)
-    .then(updateSummonerName)
-    .catch(handleError);
 }
-
-function handleResponse(response) {
-    if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json(); // Call json() here to parse the response body as JSON
-}
-
-function updateSummonerName(data) {
-    // Access the 'name' property from the parsed JSON data
-    const summonerNameResult = data.name;
-
-    // Update the <h3> element with the summoner name
-    const h3Element = document.getElementById('summoner-name');
-    h3Element.textContent = `Summoner Name: ${summonerNameResult}`;
-}
-
-function handleError(error) {
-    // Handle errors
-    console.error('Error:', error);
-}
+    // get the value of the search bar
+// make another function that gets the response in a json format
+// another func to handle the data for summoner name and updates the text content 
