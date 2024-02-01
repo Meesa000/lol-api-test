@@ -16,7 +16,7 @@ function searchSummonerName(){
 
     fetch(apiCallSummonerName)
     .then(handleResponse)
-    .then(updateSummonerName)
+    .then(updateSummonerinfo)
     .catch(handleError);
     
 
@@ -31,11 +31,17 @@ function handleResponse(response){
 
 }
 
-function updateSummonerName(data) {
-    const summonerNameHeader = document.getElementById('summoner-name');
+function updateSummonerInfo(data) {
+    
+    const displaySummonerName = document.getElementById('summoner-name');
     const summonerNameResult = data.name;
     console.log('Summoner name: ' +summonerNameResult)
-    summonerNameHeader.textContent = summonerNameResult;
+    displaySummonerName.textContent = 'Summoner name: ' + summonerNameResult;
+
+    const summonerLevel = data.summonerLevel;
+    console.log(summonerLevel);
+    const displaySummonerLevel = document.getElementById('summoner-level');
+    displaySummonerLevel.textContent = 'Summoner level: ' + summonerLevel;
 
 }
 
