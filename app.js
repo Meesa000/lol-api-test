@@ -8,7 +8,7 @@ const displaySummonerName = document.getElementById('summoner-name');
 
 
 function searchForPlayer(){
-    const API_KEY = 'RGAPI-2c53371a-b1e0-40c8-a34b-41cecf955f37'
+
     const summonerName = document.getElementById('search-player').value;
     const apiURL = 'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/'+summonerName+'?api_key='+API_KEY
 
